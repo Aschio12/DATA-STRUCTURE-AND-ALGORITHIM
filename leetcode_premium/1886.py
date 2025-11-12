@@ -38,5 +38,7 @@ for id,val in items:
         d[id].append(val)
 result=[]
 for id,val in d.items():
-    result.append([id,sum(sorted(val)[-6:-1])//5])
+    val.sort(reverse=True)
+    ave=sum(val[:5])//5
+    result.append([id,ave])
 print(sorted(result))
