@@ -1,33 +1,17 @@
-"""360. Sort Transformed Array
-Description
-Given a sorted integer array nums and three integers a, b and c, apply a quadratic function of the form f(x) = ax2 + bx + c to each element nums[i] in the array, and return the array in a sorted order.
 
-
- 
-
-Example 1:
-
-Input: nums = [-4,-2,2,4], a = 1, b = 3, c = 5
-Output: [3,9,15,33]
-Example 2:
-
-Input: nums = [-4,-2,2,4], a = -1, b = 3, c = 5
-Output: [-23,-5,1,7]
- 
-
-Constraints:
-
-1 <= nums.length <= 200
--100 <= nums[i], a, b, c <= 100
-nums is sorted in ascending order.
- """
-nums = [-4,-2,2,4]
-a = 1
-b = 3
-r = 5
-ans=[]
-for c in nums:
-    current=a*c*c + b*c + r
-    ans.append(current)
-print(sorted(ans)) 
- 
+ def maxSub(st):
+     left,length,current_dict=0,1,{}
+     for right in range(len(st)):
+        if st[right] not in current_dict:
+             current_dict[st[right]]=1
+        else:
+            current_dict[st[right]]+=1
+            
+        while len(current_dict)>2:
+            current_dict[st[left]]-=1
+            if current_dict[st[left]]==0:
+                del current_dict[st[left]]
+            left+=1
+        length=max(length,right-left+1)
+    return length
+return maxSub(s)
